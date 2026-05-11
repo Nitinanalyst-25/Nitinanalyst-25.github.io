@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nitin Dhiman — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f8f7f4;--surface:#ffffff;--ink:#111110;--ink2:#3a3835;
+  --muted:#9a9590;--faint:#e8e5df;--accent:#1a6ef5;
+  --accent-g:#0f9e60;--border:#dedad3;
+  --mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--mono);font-size:13px;line-height:1.7;cursor:none}
+#cur{position:fixed;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#cur-r{position:fixed;width:28px;height:28px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--faint) 1px,transparent 1px),linear-gradient(90deg,var(--faint) 1px,transparent 1px);background-size:40px 40px;opacity:.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 64px;height:56px;background:rgba(248,247,244,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-id{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink);letter-spacing:.04em}
+.nav-id::before{content:'';display:block;width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 3px rgba(26,110,245,.18);animation:blink 2.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-badge{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-g);padding:3px 10px;border:1px solid rgba(15,158,96,.25);border-radius:2px;background:rgba(15,158,96,.06)}
+#hero{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 420px;align-items:center;gap:48px;padding:96px 64px 64px;max-width:1280px;margin:0 auto}
+.hero-left{position:relative;padding-left:56px}
+.hero-left::before{content:'01\A 02\A 03\A 04\A 05\A 06\A 07\A 08';white-space:pre;position:absolute;left:0;top:4px;font-size:11px;line-height:2.05;color:var(--faint);letter-spacing:.04em;user-select:none}
+.tag-line{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;opacity:0;animation:up .5s ease .1s forwards}
+.tag-line span{color:var(--muted)}
+h1{font-family:var(--sans);font-size:clamp(42px,5vw,68px);font-weight:600;line-height:1.05;letter-spacing:-1.5px;color:var(--ink);opacity:0;animation:up .6s ease .25s forwards}
+h1 em{font-style:normal;color:var(--accent);font-weight:300}
+.hero-desc{margin-top:24px;max-width:520px;font-size:13px;color:var(--ink2);line-height:1.9;opacity:0;animation:up .6s ease .4s forwards}
+.hero-metrics{display:flex;gap:32px;margin-top:32px;opacity:0;animation:up .6s ease .55s forwards}
+.metric{display:flex;flex-direction:column;gap:2px}
+.metric-val{font-family:var(--sans);font-size:28px;font-weight:600;color:var(--ink);letter-spacing:-1px;line-height:1}
+.metric-val span{font-size:16px;color:var(--accent)}
+.metric-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hero-cta{display:flex;gap:10px;margin-top:36px;flex-wrap:wrap;opacity:0;animation:up .6s ease .7s forwards}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .2s;cursor:none;border:1px solid transparent}
+.btn-fill{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn-fill:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+.btn-line{background:transparent;color:var(--ink);border-color:var(--border)}
+.btn-line:hover{border-color:var(--ink);transform:translateY(-2px)}
+.skills-panel{position:relative;z-index:1;opacity:0;animation:up .7s ease .45s forwards}
+.panel-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--ink);color:var(--bg);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.panel-dots{display:flex;gap:5px}
+.panel-dots i{display:block;width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2)}
+.panel-body{background:var(--surface);border:1px solid var(--border);border-top:none;padding:20px}
+.sk-row{display:flex;padding:10px 0;border-bottom:1px solid var(--faint);align-items:flex-start;gap:12px}
+.sk-row:last-child{border-bottom:none;padding-bottom:0}
+.sk-cat{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:90px;padding-top:3px;flex-shrink:0}
+.sk-vals{display:flex;flex-wrap:wrap;gap:5px}
+.sk{padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:2px;font-size:10px;color:var(--ink2);letter-spacing:.04em;transition:all .18s}
+.sk:hover{border-color:var(--accent);color:var(--accent)}
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 64px 80px}
+.sec-hd{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;margin-bottom:32px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.sec-hd-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.sec-hd-line{height:1px;background:var(--faint)}
+.sec-hd-num{font-size:10px;color:var(--muted);letter-spacing:.1em}
+.proj-list{display:flex;flex-direction:column;gap:1px}
+.proj{background:var(--surface);border:1px solid var(--border);padding:40px 44px;position:relative;overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.proj:hover{box-shadow:0 4px 32px rgba(0,0,0,.07);border-color:rgba(26,110,245,.3)}
+.proj::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .35s ease}
+.proj:hover::before{transform:scaleY(1)}
+.proj-meta{display:flex;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.proj-index{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.proj-dtags{display:flex;gap:6px;flex-wrap:wrap}
+.d-tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:2px;background:rgba(26,110,245,.07);border:1px solid rgba(26,110,245,.18);color:var(--accent)}
+.proj-title{font-family:var(--sans);font-size:22px;font-weight:600;color:var(--ink);letter-spacing:-.4px;line-height:1.2;margin-bottom:20px}
+.proj-body{display:grid;grid-template-columns:1fr 200px;gap:32px;align-items:start}
+.proj-bullets{list-style:none;display:flex;flex-direction:column;gap:9px}
+.proj-bullets li{font-size:12.5px;color:var(--ink2);padding-left:18px;position:relative;line-height:1.7}
+.proj-bullets li::before{content:'>';position:absolute;left:0;color:var(--accent);font-size:11px;top:2px;font-weight:600}
+.hl{background:rgba(26,110,245,.08);border-bottom:1px solid rgba(26,110,245,.3);padding:0 2px;color:var(--accent)}
+.proj-stack-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.proj-stack{display:flex;flex-direction:column;gap:4px;margin-bottom:20px}
+.st{font-size:11px;padding:5px 10px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--ink2);display:flex;align-items:center;gap:6px}
+.st::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:var(--accent-g);flex-shrink:0}
+.proj-link{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.06em;color:var(--accent);text-decoration:none;border:1px solid rgba(26,110,245,.25);padding:8px 14px;border-radius:2px;background:rgba(26,110,245,.04);transition:all .2s;width:100%;justify-content:center}
+.proj-link:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cert-card{background:var(--surface);border:1px solid var(--border);display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:24px;padding:28px 36px;transition:box-shadow .25s,border-color .25s}
+.cert-card:hover{box-shadow:0 4px 24px rgba(0,0,0,.06);border-color:rgba(26,110,245,.25)}
+.cert-icon{width:56px;height:56px;background:rgba(26,110,245,.07);border:1px solid rgba(26,110,245,.18);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.cert-title{font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.cert-issuer{font-size:11px;color:var(--muted);letter-spacing:.04em}
+.cert-status{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:2px;color:var(--accent-g);background:rgba(15,158,96,.07);border:1px solid rgba(15,158,96,.22);white-space:nowrap}
+#contact{position:relative;z-index:1;background:var(--ink);padding:72px 64px}
+.contact-inner{max-width:1280px;margin:0 auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.contact-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,247,244,.35);margin-bottom:16px}
+.contact-heading{font-family:var(--sans);font-size:clamp(36px,4vw,52px);font-weight:600;letter-spacing:-1.5px;line-height:1;color:#f8f7f4;margin-bottom:16px}
+.contact-heading em{font-style:italic;font-weight:300;color:rgba(26,110,245,.8)}
+.contact-sub{font-size:12px;color:rgba(248,247,244,.4);line-height:1.85;max-width:380px}
+.contact-fields{display:flex;flex-direction:column;gap:24px}
+.cf-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(248,247,244,.3);margin-bottom:6px}
+.cf-value{font-size:14px;color:#f8f7f4;border-bottom:1px solid rgba(248,247,244,.12);padding-bottom:10px}
+.cf-value a{color:#f8f7f4;text-decoration:none;transition:color .2s}
+.cf-value a:hover{color:rgba(26,110,245,.8)}
+.contact-profiles{margin-top:36px;padding-top:28px;border-top:1px solid rgba(248,247,244,.08);display:flex;gap:16px;flex-wrap:wrap}
+.cp-link{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:rgba(248,247,244,.35);text-decoration:none;border:1px solid rgba(248,247,244,.12);padding:7px 16px;border-radius:2px;transition:all .2s}
+.cp-link:hover{color:#f8f7f4;border-color:rgba(248,247,244,.35)}
+footer{position:relative;z-index:1;background:var(--ink);border-top:1px solid rgba(248,247,244,.07);padding:18px 64px;display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.1em;color:rgba(248,247,244,.25)}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+@media(max-width:960px){
+  nav{padding:0 24px}.nav-links{display:none}
+  #hero{grid-template-columns:1fr;padding:88px 24px 48px;gap:36px}
+  .hero-left{padding-left:0}.hero-left::before{display:none}
+  .wrap{padding:0 24px 60px}
+  .proj-body{grid-template-columns:1fr}
+  .proj-sidebar{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .proj-stack{flex-direction:row;flex-wrap:wrap;margin-bottom:0}
+  .proj-link{width:auto}
+  .cert-card{grid-template-columns:40px 1fr;padding:20px}.cert-status{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  #contact{padding:56px 24px}
+  footer{padding:16px 24px;flex-direction:column;gap:6px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<nav>
+  <div class="nav-id">ND_ &nbsp;<span style="color:var(--muted);font-weight:300">Data Analyst</span></div>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-badge">Open to roles</div>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="tag-line">// analyst <span>·</span> sql <span>·</span> python <span>·</span> tableau <span>·</span> power bi</div>
+    <h1>Data into<br/><em>insight.</em><br/>Insight into<br/>action.</h1>
+    <p class="hero-desc">Proficient in the full analytical pipeline — from multi-table SQL querying and Python-based EDA to predictive modelling with Scikit-learn and stakeholder-ready dashboards in Tableau and Power BI.</p>
+    <div class="hero-metrics">
+      <div class="metric"><div class="metric-val">100K<span>+</span></div><div class="metric-lbl">Records analysed</div></div>
+      <div class="metric"><div class="metric-val">8<span>+</span></div><div class="metric-lbl">Tables joined</div></div>
+      <div class="metric"><div class="metric-val">2</div><div class="metric-lbl">End-to-end projects</div></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-fill">View Projects</a>
+      <a href="https://github.com/Nitinanalyst-25" target="_blank" class="btn btn-line">GitHub</a>
+      <a href="https://public.tableau.com/app/profile/nitin.dhiman8857" target="_blank" class="btn btn-line">Tableau Public</a>
+      <a href="https://www.linkedin.com/in/nitin-dhiman-pa/" target="_blank" class="btn btn-line">LinkedIn</a>
+    </div>
+  </div>
+
+  <div class="skills-panel">
+    <div class="panel-header">
+      <span>skills.json</span>
+      <div class="panel-dots"><i></i><i></i><i></i></div>
+    </div>
+    <div class="panel-body">
+      <div class="sk-row">
+        <div class="sk-cat">Querying</div>
+        <div class="sk-vals"><span class="sk">SQL</span><span class="sk">MySQL</span><span class="sk">CTEs</span><span class="sk">Window Fn</span><span class="sk">Subqueries</span></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">Python</div>
+        <div class="sk-vals"><span class="sk">Pandas</span><span class="sk">NumPy</span><span class="sk">Scikit-learn</span><span class="sk">EDA</span></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">Modelling</div>
+        <div class="sk-vals"><span class="sk">Regression</span><span class="sk">MAE / RMSE</span><span class="sk">R²</span><span class="sk">Forecasting</span></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">Visualisation</div>
+        <div class="sk-vals"><span class="sk">Tableau</span><span class="sk">Power BI</span><span class="sk">Excel</span><span class="sk">Pivot Tables</span></div>
+      </div>
+      <div class="sk-row">
+        <div class="sk-cat">Tools</div>
+        <div class="sk-vals"><span class="sk">Jupyter</span><span class="sk">GitHub</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" id="projects">
+  <div class="sec-hd reveal">
+    <span class="sec-hd-label">Projects</span>
+    <div class="sec-hd-line"></div>
+    <span class="sec-hd-num">01 / 02</span>
+  </div>
+  <div class="proj-list">
+
+    <div class="proj reveal">
+      <div class="proj-meta">
+        <span class="proj-index">proj_01</span>
+        <div class="proj-dtags"><span class="d-tag">Logistics</span><span class="d-tag">E-Commerce</span><span class="d-tag">Predictive Modelling</span></div>
+      </div>
+      <div class="proj-title">Brazilian E-Commerce Strategic Market Analysis</div>
+      <div class="proj-body">
+        <ul class="proj-bullets">
+          <li>Analyzed <span class="hl">100K+ orders</span> by integrating 8+ relational tables using SQL and Python to investigate the relationship between freight costs and delivery efficiency.</li>
+          <li>Applied Scikit-learn regression models to forecast delivery lead times and identify key variables impacting order fulfillment speed across regions.</li>
+          <li>Uncovered a <span class="hl">45% delivery time gap</span> between North/Northeast and Southern regions despite comparable freight costs — confirming infrastructure as the primary bottleneck over pricing.</li>
+          <li>Identified a High-Friction Zone where freight cost and delivery time showed weak correlation <span class="hl">r &lt; 0.3</span> — "Express" premiums rarely translated to faster delivery; recommended a decentralized warehouse strategy.</li>
+          <li>Designed a Tableau Storyboard with a What-If simulator enabling stakeholders to benchmark carrier performance against regional averages.</li>
+        </ul>
+        <div>
+          <div class="proj-stack-label">// stack</div>
+          <div class="proj-stack">
+            <span class="st">SQL</span><span class="st">Python</span><span class="st">Scikit-learn</span><span class="st">Tableau</span><span class="st">EDA</span>
+          </div>
+          <a href="https://github.com/Nitinanalyst-25/brazil-ecommerce-logistics-analysis" target="_blank" class="proj-link">
+            View Repo
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="proj reveal">
+      <div class="proj-meta">
+        <span class="proj-index">proj_02</span>
+        <div class="proj-dtags"><span class="d-tag">Real Estate</span><span class="d-tag">Valuation</span><span class="d-tag">Machine Learning</span></div>
+      </div>
+      <div class="proj-title">Real Estate Price Analysis & Prediction</div>
+      <div class="proj-body">
+        <ul class="proj-bullets">
+          <li>Analyzed <span class="hl">1,460+ residential properties</span> across <span class="hl">25 neighbourhoods</span> using SQL and Python to investigate the relationship between property features and market valuation.</li>
+          <li>Applied Scikit-learn regression models to predict residential sale prices — evaluating performance through MAE, RMSE, and R² metrics to identify the most accurate valuation approach.</li>
+          <li>Uncovered significant price disparity across neighbourhoods, identifying premium, value, and undervalued opportunity categories to support investment advisory decisions.</li>
+          <li>Quantified the impact of key property features on sale price through statistical analysis — surfacing actionable renovation and acquisition insights.</li>
+          <li>Built an interactive Power BI dashboard to visualize property valuations, neighbourhood price trends, and acquisition opportunities for stakeholders.</li>
+        </ul>
+        <div>
+          <div class="proj-stack-label">// stack</div>
+          <div class="proj-stack">
+            <span class="st">SQL</span><span class="st">Python</span><span class="st">Scikit-learn</span><span class="st">Power BI</span><span class="st">Statistics</span>
+          </div>
+          <a href="https://github.com/Nitinanalyst-25/real-estate-price-analysis" target="_blank" class="proj-link">
+            View Repo
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="wrap" id="certifications">
+  <div class="sec-hd reveal">
+    <span class="sec-hd-label">Certifications</span>
+    <div class="sec-hd-line"></div>
+    <span class="sec-hd-num">02</span>
+  </div>
+  <div class="cert-card reveal">
+    <div class="cert-icon">☁️</div>
+    <div>
+      <div class="cert-title">Microsoft Azure Data Analytics</div>
+      <div class="cert-issuer">Simplilearn &nbsp;·&nbsp; Microsoft Azure</div>
+    </div>
+    <div class="cert-status">✓ &nbsp;Certified</div>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <div class="contact-left reveal">
+        <div class="contact-label">// get in touch</div>
+        <div class="contact-heading">Let's<br/><em>connect.</em></div>
+        <p class="contact-sub"></p>
+      </div>
+      <div class="contact-right reveal">
+        <div class="contact-fields">
+          <div>
+            <div class="cf-label">Email</div>
+            <div class="cf-value">
+              <a href="mailto:nitineco26@gmail.com">nitineco26@gmail.com</a>
+            </div>
+          </div>
+          <div>
+            <div class="cf-label">LinkedIn</div>
+            <div class="cf-value">
+              <a href="https://www.linkedin.com/in/nitin-dhiman-pa/" target="_blank">linkedin.com/in/nitin-dhiman-pa</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-profiles">
+          <a href="https://github.com/Nitinanalyst-25" target="_blank" class="cp-link">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Nitin Dhiman — Data Analyst</span>
+  <span>nitinanalyst-25.github.io</span>
+</footer>
+
+<script>
+const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop)})();
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('on'),i*90)})},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
